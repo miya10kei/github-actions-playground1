@@ -22,7 +22,7 @@ jobs:
                     -H "X-GitHub-Api-Version: 2022-11-28" \
                   | jq -r '.[] | select(.name == "${{ github.ref_name }}") | .name')
 
-          if [ -z "$BRANCH"  ]; then
+          if [ -z "$BRANCH" ]; then
             BRANCH=main
 
           curl -L \
