@@ -16,10 +16,19 @@ jobs:
           OWNER=miya10kei
           REPO=github-actions-playground2
 
+          BRANCH=$(curl -L https://api.github.com/repos/$OWNER/$REPO/branches \
+                    -H "Accept: application/vnd.github+json" \
+                    -H "Authorization: Bearer $TOKEN" \
+                    -H "X-GitHub-Api-Version: 2022-11-28" \
+                  | jq -r '.[] | select(.name == "${{ github.ref_name }}") | .name')
+
+          if [ -z "$BRANCH"  ]; then
+            BRANCH=main
+
           curl -L \
             -X POST \
             -H "Accept: application/vnd.github+json" \
             -H "Authorization: Bearer $TOKEN" \
             -H "X-GitHub-Api-Version: 2022-11-28" \
             https://api.github.com/repos/$OWNER/$REPO/actions/workflows/74611412/dispatches \
-            -d '{"ref":"${{ github.event.inputs.dispatched-branch }}","inputs":{"ticket-id":"Hello","base-branch":"develop"}}'
+            -d "{ \"ref\": \"$BRANCH\", \"inputs\": { \"ticket-id\": \"Hello\", \"base-branch\": \"develop\" }}"
