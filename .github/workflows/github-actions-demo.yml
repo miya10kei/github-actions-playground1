@@ -1,6 +1,11 @@
 name: Dispatcher
 on:
   workflow_dispatch:
+    inputs:
+      dispatched-branch:
+        required: true
+        default: main
+        description: ディスパッチ先のブランチ
 
 jobs:
   dispatch:
@@ -17,4 +22,4 @@ jobs:
             -H "Authorization: Bearer $TOKEN" \
             -H "X-GitHub-Api-Version: 2022-11-28" \
             https://api.github.com/repos/$OWNER/$REPO/actions/workflows/74611412/dispatches \
-            -d '{"ref":"main","inputs":{"ticket-id":"Hello","base-branch":"develop"}}'
+            -d '{"ref":"${{ github.event.inputs.dispatched-branch }}","inputs":{"ticket-id":"Hello","base-branch":"develop"}}'
