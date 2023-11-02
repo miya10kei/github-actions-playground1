@@ -14,7 +14,7 @@ jobs:
           OWNER=miya10kei
           REPO=github-actions-playground2
 
-          echo "${{ github.event.pull_request.labels.*.name }}"
+          echo "${{ toJson(github.event.pull_request.labels.*.name) }}"
 
           BRANCH=$(curl -L https://api.github.com/repos/$OWNER/$REPO/branches \
                     -H "Accept: application/vnd.github+json" \
