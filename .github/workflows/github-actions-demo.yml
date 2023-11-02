@@ -18,6 +18,7 @@ jobs:
           echo "${{ toJson(github.event.pull_request.labels.*.name) }}"
           echo "${{ github.event.label.name }}"
           echo "${{ github.GITHUB_REPOSITORY }}-${{ github.GITHUB_REF }}"
+          echo "cd-${{ github.workflow }}-${{ github.ref }}"
 
           BRANCH=$(curl -L https://api.github.com/repos/$OWNER/$REPO/branches \
                     -H "Accept: application/vnd.github+json" \
