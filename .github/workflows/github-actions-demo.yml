@@ -8,7 +8,7 @@ on:
 jobs:
   dispatch:
     runs-on: ubuntu-latest
-    if: github.event.label.name == "bug"
+    if: github.event.label.name == 'bug'
     steps:
       - run: |
           TOKEN=${{ secrets.PAT }}
@@ -17,6 +17,7 @@ jobs:
 
           echo "${{ toJson(github.event.pull_request.labels.*.name) }}"
           echo "${{ github.event.label.name }}"
+          echo "${{ github.GITHUB_REPOSITORY }}-${{ github.GITHUB_REF }}"
 
           BRANCH=$(curl -L https://api.github.com/repos/$OWNER/$REPO/branches \
                     -H "Accept: application/vnd.github+json" \
