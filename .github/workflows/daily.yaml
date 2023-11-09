@@ -7,6 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
+          echo "${{ github.workflow }}-${{ github.event.label.name }}-${{ github.ref }}"
           readarray -t pr_nums < <(gh pr list --limit 100 --json 'number' --jq '.[].number' --search "is:open label:duplicate -label:enhancement")
 
           for pr_num in "${pr_nums[@]}"; do
