@@ -1,0 +1,16 @@
+name: dayily
+on:
+  workflow_dispatch:
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          readarray -t pr_nums < <(gh pr list --limit 100 --json 'number' --jq '.[].number' --search "is:open label:duplicate -label:enhancement")
+
+          for pr_num in "${pr_nums[@]}"; do
+              gh pr edit $pr_num --remove-label "duplicate"
+          done
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
