@@ -17,7 +17,7 @@ jobs:
           )
 
           for pr_num in "${pr_nums[@]}"; do
-              gh pr edit $pr_num --remove-label "duplicate,bug"
+              gh pr edit $pr_num --remove-label "duplicate,bug,documentation"
           done
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
