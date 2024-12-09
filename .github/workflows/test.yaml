@@ -10,7 +10,8 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: docker://chinthakagodawita/autoupdate-action@sha256:53d7013ad4689b703d2715d4b17d4901bb0a385e495e0b481f37adbe9b3cc3fc # v1
+      - uses: docker://chinthakagodawita/autoupdate-action@sha256:3320bc61246db3f26fbb36ebade4a220e6f535642dcfd036bebb8516fb4c58cb # v1.7.0
+
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           DRY_RUN: "false"
