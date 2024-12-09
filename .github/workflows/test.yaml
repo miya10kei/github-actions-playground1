@@ -10,4 +10,10 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "ok"
+      - uses: docker://chinthakagodawita/autoupdate-action@sha256:53d7013ad4689b703d2715d4b17d4901bb0a385e495e0b481f37adbe9b3cc3fc # v1
+        env:
+          DRY_RUN: "false"
+          PR_FILTER: "auto_merge"
+          RETRY_COUNT: "3"
+          RETRY_SLEEP: "5000" # 5秒
+          MERGE_CONFLICT_ACTION: "fail"
