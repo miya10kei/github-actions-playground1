@@ -1,0 +1,13 @@
+on:
+  push:
+    branches:
+      - develop
+      - staging
+  pull_request_target:
+    types: [auto_merge_enabled]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "ok"
