@@ -12,6 +12,7 @@ jobs:
     steps:
       - uses: docker://chinthakagodawita/autoupdate-action@sha256:53d7013ad4689b703d2715d4b17d4901bb0a385e495e0b481f37adbe9b3cc3fc # v1
         env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           DRY_RUN: "false"
           PR_FILTER: "auto_merge"
           RETRY_COUNT: "3"
